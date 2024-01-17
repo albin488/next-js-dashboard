@@ -148,7 +148,7 @@ const datas = await getData(id);
       </div>
     </div>
           </div>
-          <EditUserForm ids={id} datasc={datas} className="w-1/2" />
+          <EditUserForm ids={id} datasc={datas} />
         </div>
 ) : (
     <p>Loading...</p>
