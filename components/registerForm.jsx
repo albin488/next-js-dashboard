@@ -17,6 +17,27 @@ import { useState } from "react";
             return;
         }else{
             try {
+
+            
+                const resUserExists = await fetch('/api/userExists', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+            
+                  body: JSON.stringify({
+                    email
+                  }),
+                });
+
+                const {emailR}=await resUserExists.json();
+                console.log(emailR);
+
+                if(emailR){
+                  setError("User already exists.");
+                  return;
+                }else{
+
                 const response = await fetch('/api/registers', {
                   method: 'POST',
                   headers: {
@@ -33,6 +54,7 @@ import { useState } from "react";
                 }else{
                   console.log("User registration failed");
                 }
+              }
 
         }  catch (error) {
             console.error('Error adding user:', error);
