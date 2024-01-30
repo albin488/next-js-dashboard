@@ -14,7 +14,7 @@ export async function getData(id) {
   
       const data = await response.json();
   
-      console.log('Data:', data.user);
+      //console.log('Data:', data.user);
   
       // Return the data
       return data.user;

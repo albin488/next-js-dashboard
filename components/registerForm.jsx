@@ -2,18 +2,23 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter} from 'next/navigation'
 
  function RegisterForm(){
+  const router = useRouter()
     const [name, setName]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const [error,setError]=useState("");
+    const [role,setRole]=useState("editer");
+    const [statu,setStatu]=useState("panding");
+
 //console.log(email);
 
      const handleSubmitLog= async(e)=>{
         e.preventDefault();
         if(!name || !email || !password || password.length <= 6){
-            setError("minimum length password 6");
+            setError("minimum password 6 characters");
             return;
         }else{
             try {
@@ -31,7 +36,7 @@ import { useState } from "react";
                 });
 
                 const {emailR}=await resUserExists.json();
-                console.log(emailR);
+                //console.log(emailR);
 
                 if(emailR){
                   setError("User already exists.");
@@ -45,12 +50,13 @@ import { useState } from "react";
                   },
             
                   body: JSON.stringify({
-                    name, email, password
+                    name, email, password,role,statu
                   }),
                 });
                 if(response.ok){
                   const form=e.target;
                   form.reset();
+                  router.push('/');
                 }else{
                   console.log("User registration failed");
                 }
@@ -98,6 +104,8 @@ import { useState } from "react";
             <label htmlFor="password" className="mb-2 text-sm text-start text-grey-900">Password*</label>
             <input onChange={(e)=>setPassword(e.target.value)}
              id="password" type="password" placeholder="Enter a password" className="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+           {password.length <= 6 &&(
+            <p className="text-sm m-4 leading-relaxed text-black">Minimum 6 characters.</p>)}
             </div>
             <div className=" m-4 text-left">
             <button className="w-full h-12 px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-black">Sign In</button>

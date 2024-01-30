@@ -1,10 +1,12 @@
 import mongoose, { Schema, models } from "mongoose";
 
-const registerSchema = new Schema(
+const newSchema = new Schema(
   {
-    name: { type: String, require: true },
-    email: { type: String, require: true },
-    password: { type: String, require: true },
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    role: { type: String, required: true },
+    statu: { type: String, required: true },
   },
 
   {
@@ -12,6 +14,6 @@ const registerSchema = new Schema(
   }
 );
 
-const Regi = models.Regi || mongoose.model("Regi", registerSchema);
+const Regis = models.Regi || mongoose.model("Regi", newSchema);
 
-export default Regi;
+export default Regis;

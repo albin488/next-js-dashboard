@@ -19,7 +19,7 @@ async function getData() {
   // You can return Date, Map, Set, etc.
    // Parse JSON from the response
    const data = await res.json();
-  console.log(data.users);
+  //console.log(data.users);
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
