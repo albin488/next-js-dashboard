@@ -105,7 +105,7 @@ export default async function Admin(){
                             <tr key={user._id} >
                             
                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <Link href={`/editUser/${user._id}`}>
+                                <Link href={`/editAdmin/${user._id}`}>
                                     <div className="flex items-center">
                                         <div className="flex-shrink-0 w-10 h-10">
                 

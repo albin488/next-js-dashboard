@@ -2,10 +2,28 @@ import connectMongoDB from "@/libs/mongodb";
 import User from "@/models/user";
 import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
+import formidable from "formidable-serverless";
+
+// Configuration pour désactiver le traitement du corps de la requête par Next.js
+export const config = {
+  api: {
+    bodyParser: false,
+    externalResolver: true,
+  },
+};
 
 export async function POST(request) {
-  const { name, lastname, email, date, adress, telephone, detail } =
+  const { name, lastname, email, date, adress, telephone, detail, file } =
     await request.json();
+  const fileBuffer = Buffer.from(file, "base64");
+
+  const fileObject = {
+    content: fileBuffer,
+    filename: name,
+  };
+
+  console.log("File object:", fileObject);
+  //Fichier(request);
   await connectMongoDB();
   await User.create({ name, lastname, email, date, adress, telephone, detail });
   return NextResponse.json({ message: "user created" }, { status: 201 });

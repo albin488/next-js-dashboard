@@ -26,6 +26,7 @@ export async function PUT(request, { params }) {
 export async function GET(request, { params }) {
   const { id } = params;
   await connectMongoDB();
+  //console.log(id);
   const user = await Regi.findOne({ _id: id });
   return NextResponse.json({ user }, { status: 200 });
 }

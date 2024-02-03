@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import SessionBtn from './sessionBtn';
 import LogOutBtn from './logOutBtn';
+import AccountBtn from './accountBtn';
 
   
   export default async function Page() {
@@ -9,7 +10,7 @@ import LogOutBtn from './logOutBtn';
     return(
    <main className=' w-full mb-4'>
 <nav className="bg-gray-800 w-full flex flex-row justify-between ">
-  <div className=" m-0 px-2 sm:px-6 lg:px-8">
+  <div className=" m-0 sm:px-6 lg:px-8">
     <div className="relative flex h-16 items-center justify-between">
   
       <div className="flex flex-1 items-center justify-center  sm:items-stretch sm:justify-start">
@@ -29,8 +30,8 @@ import LogOutBtn from './logOutBtn';
     </div>
   </div>
 
-  <div className="sm:hidden" id="mobile-menu">
-    <div className="space-y-1 px-2 pb-3 pt-2 flex bg-gray-900">
+  <div className="w-full" id="mobile-menu">
+    <div className="space-y-1 pb-3 flex bg-gray-900">
       <a href="/" id='jaune' className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboards</a>
       <Link href="/admin" id='jaune' className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</Link>
 
@@ -40,17 +41,14 @@ import LogOutBtn from './logOutBtn';
       
 
    
-        <div className="relative ml-3 ">
+        <div className="relative ml-3 w-8 ">
           <div className=''>
          <SessionBtn/>
           </div>
 
-          <div className=" relative hidden right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
+          <div className=" hidden relative right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
   
-            <a href="#" className="block px-4 py-2 text-sm text-gray-300" role="menuitem" tabIndex="-1" id="user-menu-item-0">Your Profile</a>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-1">Settings</a>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign out</a>
-          </div>
+               </div>
         </div>
       </div>
     </div>
@@ -82,9 +80,9 @@ import LogOutBtn from './logOutBtn';
         {/* Add more navigation items as needed /}
       </ul>
     </nav> */}
-	<div className="w-full max-w-md px-7 py-10 mx-auto mb-3 bg-white rounded-2xl shadow-xl flex justify-center">
+	<div className="w-full max-w-md px-7 py-10 mb-3 bg-white rounded-2xl shadow-xl flex justify-center">
 			
-			<div className="px-5 pt-3 bg-white shadow-lg rounded-2xl w-1/2">
+			<div className="px-5 pt-3 mb-3 bg-white shadow-lg rounded-2xl w-1/2">
 				<div className="flex flex-row space-x-3">
 				
 					<div className="flex group">
@@ -144,46 +142,10 @@ import LogOutBtn from './logOutBtn';
 							</span>
 						</Link>
 					</div>
-
+          <div className="flex group p-3 text-gray-400 hover:text-yellow-500">
+          <AccountBtn/>
+          </div>
 				
-					<div className="flex group">
-						<Link href="#" className="p-3 text-gray-400 hover:text-yellow-500">
-							<span className="flex flex-col items-center">
-					
-								<i className="mdi mdi-basket-plus-outline mdi-24px mx-1 text-gray-500 group-hover:text-gray-700
-									transition-color duration-200"></i>
-
-					
-								<span className="text-xs mb-2 transition-all duration-200">
-									Cart
-								</span>
-
-					
-								<span className="h-2 w-2 rounded-full group-hover:bg-yellow-500
-									transition-all duration-150 delay-100"></span>
-							</span>
-						</Link>
-					</div>
-
-				
-					<div className="flex group">
-						<Link href="#" className="p-3 text-gray-400 hover:text-yellow-500">
-							<span className="flex flex-col items-center">
-				
-								<i className="mdi mdi-account-circle-outline mdi-24px mx-1 text-gray-500 group-hover:text-gray-700
-									transition-color duration-200"></i>
-
-				
-								<span className="text-xs mb-2 transition-all duration-200">
-									Account
-								</span>
-
-					
-								<span className="h-2 w-2 rounded-full group-hover:bg-yellow-500
-									transition-all duration-150 delay-100"></span>
-							</span>
-						</Link>
-					</div>
 				</div>
 			</div>
 		</div>

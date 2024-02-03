@@ -27,8 +27,15 @@ export const authOptions = {
             return null;
           } else {
             // Any object returned will be saved in `user` property of the JWT
-
-            return user;
+            // console.log("utilisateur", user);
+            if (user.statu == "online") {
+              return user;
+            } else {
+              return Promise.resolve(null, {
+                status: "error",
+                message: "User status is not online",
+              });
+            }
           }
         } catch (error) {}
       },

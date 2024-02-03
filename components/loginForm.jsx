@@ -6,13 +6,15 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
  function LoginForm(){
-  
+
+  const router=useRouter();
   const [email , setEmail]=useState("");
   const [password, setPassword]=useState("");
   const [error, setError]=useState("");
   const [loading, setLoading] = useState(false);
+  const { message } =  router.query || {};
   
-  const router=useRouter();
+  
 
   const handleSubmit =async(e)=>{ 
     e.preventDefault();
@@ -32,7 +34,7 @@ console.log("pass:",password);
       return;
      }else{
      console.log("login");
-      router.replace("dashboard");}
+      router.refresh();}
      
     }catch(error){
       console.log(error);
@@ -71,7 +73,7 @@ console.log("pass:",password);
                 <button disabled={loading} type="submit" className="w-full h-12 px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-black">{loading?'connecting...': "Login"}</button>
                 {error &&(
             <p className="text-sm m-4 leading-relaxed text-red-500">{error}</p>
-            )}
+            )}{message && <p>Error: {message}</p>}
               </div>
               <p className="text-sm m-4 leading-relaxed text-grey-900">Not registered yet? <Link href="/register" className="mb-4 font-bold text-grey-700">Create an Account</Link></p>
             </div>
