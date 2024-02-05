@@ -51,7 +51,7 @@ import { useRouter,redirect } from 'next/navigation'
    
     console.log("click");
         try {
-          const response = await fetch(`${api}/api/users/${ids}`, {
+          const response = await fetch(`/api/users/${ids}`, {
             method: "PUT",
             headers: {
               'Content-Type': 'application/json',

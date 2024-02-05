@@ -123,10 +123,6 @@ Client Info
                   </div>
                 </div>
                 <div className="w-2/5">
-                <input type="file" name='file' id='file'  value={formData.file}
-                     onChange={handleChange} />
-              </div>
-                <div className="w-2/5">
                   <p className="block mb-2 font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">
                     LastName
                   </p>

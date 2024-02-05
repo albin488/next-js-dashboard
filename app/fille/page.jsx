@@ -69,12 +69,13 @@ const Upload = () => {
     
           // Handle the response as needed
           console.log(response);
-          router.refresh();
+         
           setMessage("files uploaded");
         } catch (error) {
           console.error('Error uploading files:', error);
           setMessage(error.message);
         }
+        router.refresh();
       };
 
     return (

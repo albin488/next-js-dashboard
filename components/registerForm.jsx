@@ -56,7 +56,7 @@ import { useRouter} from 'next/navigation'
                 if(response.ok){
                   const form=e.target;
                   form.reset();
-                  router.push('/');
+                  router.push('/wait');
                 }else{
                   console.log("User registration failed");
                 }

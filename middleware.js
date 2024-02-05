@@ -9,5 +9,6 @@ export const config = {
     "/editAdmin/:path*",
     "/admin",
     "/editUser/:path*",
+    "/fille",
   ],
 };

@@ -12,7 +12,7 @@ const  EditAdminForm = ({datasc}) =>  {
     const [loading, setLoading] = useState(false);
     const ids=datasc._id
     const { data: session } = useSession();
-    const api=process.env.API_URL
+   // const api=process.env.API_URL
    // console.log(datasc);
   
     const toggleVisibility = () => {
@@ -54,7 +54,7 @@ const  EditAdminForm = ({datasc}) =>  {
       console.log("click");
           try {
             setLoading(true);
-            const response = await fetch(`${api}/api/admin/${ids}`, {
+            const response = await fetch(`/api/admin/${ids}`, {
               method: "PUT",
               headers: {
                 'Content-Type': 'application/json',

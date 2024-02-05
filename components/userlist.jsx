@@ -37,7 +37,7 @@ export default async function UserList(){
         <>
    
  <div className=" bp-4 borderorder-slate-300 p-4 " >
-
+client
             <table className="min-w-full bg-white border border-gray-300">
       <thead>
         <tr>
