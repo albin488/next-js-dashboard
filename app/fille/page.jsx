@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import FileList from '@/components/fileList';
-import dynamic from 'next/dynamic';
 
 const Upload = () => {
   const router=useRouter();

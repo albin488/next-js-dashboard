@@ -43,9 +43,9 @@ console.log("click");
         body: JSON.stringify(formData),
       });
 //chek url
-console.log('URL:', 'http:localhost:3000/api/users');
-console.log('Headers:', { 'Content-Type': 'application/json' });
-console.log('Body:', JSON.stringify(formData));
+//console.log('URL:', 'http:localhost:3000/api/users');
+//console.log('Headers:', { 'Content-Type': 'application/json' });
+//console.log('Body:', JSON.stringify(formData));
 // Trigger the onDelete callback
 router.push('/dashboard');
 // Reload the destination page to update data

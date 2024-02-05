@@ -5,11 +5,14 @@
 import { useState,useEffect } from 'react';
 import { useRouter,redirect } from 'next/navigation'
 import AdmRemoveBtn from './admRemoveBtn';
+import { useSession } from "next-auth/react"
 
 const  EditAdminForm = ({datasc}) =>  {
     const [isVisible, setIsVisible] = useState(true);
     const [loading, setLoading] = useState(false);
     const ids=datasc._id
+    const { data: session } = useSession();
+    const api=process.env.API_URL
    // console.log(datasc);
   
     const toggleVisibility = () => {
@@ -51,7 +54,7 @@ const  EditAdminForm = ({datasc}) =>  {
       console.log("click");
           try {
             setLoading(true);
-            const response = await fetch(`http://localhost:3000/api/admin/${ids}`, {
+            const response = await fetch(`${api}/api/admin/${ids}`, {
               method: "PUT",
               headers: {
                 'Content-Type': 'application/json',
@@ -172,8 +175,12 @@ const  EditAdminForm = ({datasc}) =>  {
                     className="h-full text-sm  rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                 >
                     <option>{formData.role}</option>
+                    {session?.user?.id !==formData._id &&(
+                      <>
                     <option>admin</option>
                     <option>editer</option>
+                    </>
+                    )}
                 </select>
                 </div>
             </a>
@@ -203,9 +210,14 @@ const  EditAdminForm = ({datasc}) =>  {
                     className="h-full text-sm  rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                 >
                     <option value={formData.statu}>{formData.statu}</option>
-                    <option value="online">online</option>
+                    {session?.user?.id !==formData._id &&(
+                      <>
+                     <option value="online">online</option>
                     <option value="pandin">pading</option>
                     <option value="block">block</option>
+                      </>
+                    )}
+                    
                 </select>
                 </div>
             </a>
@@ -214,8 +226,9 @@ const  EditAdminForm = ({datasc}) =>  {
         
         
     
-
+        {session?.user?.id !==formData._id &&(
     <div className="flex">
+      
         < div className="w-full px-4 py-2 pb-4 hover:bg-gray-100 flex">
             <p className="text-sm font-medium text-gray-800 leading-none">
          
@@ -230,7 +243,7 @@ const  EditAdminForm = ({datasc}) =>  {
 </svg>save
 </p>}
         </button>
-    </div>
+    </div>)}
     </form>
     );};
     

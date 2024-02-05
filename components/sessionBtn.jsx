@@ -2,7 +2,8 @@
 import { useSession } from "next-auth/react"
 
 export default function SessionBtn(){
-    const { data: session, status } = useSession()
+    const { data: session, status } = useSession();
+    //console.log("session:",session);
     return(
 <div className="relative w-20 h-10 flex flex-col text-gray-300 justify-center items-center rounded-full  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
 

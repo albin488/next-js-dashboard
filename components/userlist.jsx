@@ -6,8 +6,8 @@ import {HiPencilArt} from 'react-icons/hi'
 import { useRouter } from "next/navigation";
 
 async function getData() {
-  
-  const res = await fetch('http:localhost:3000/api/users',{
+  const api=process.env.API_URL
+  const res = await fetch(`${api}/api/users`,{
       method: 'GET',
       cache: "no-store",
       headers: {

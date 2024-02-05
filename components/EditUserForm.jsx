@@ -7,7 +7,7 @@ import { useRouter,redirect } from 'next/navigation'
 
  const  EditUserForm = ({ids,datasc,}) =>  {
   const [isVisible, setIsVisible] = useState(true);
-
+  const api=process.env.API_URL
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
@@ -51,7 +51,7 @@ import { useRouter,redirect } from 'next/navigation'
    
     console.log("click");
         try {
-          const response = await fetch(`http://localhost:3000/api/users/${ids}`, {
+          const response = await fetch(`${api}/api/users/${ids}`, {
             method: "PUT",
             headers: {
               'Content-Type': 'application/json',

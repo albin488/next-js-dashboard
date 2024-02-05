@@ -1,8 +1,13 @@
 import Link from "next/link";
+import { useSession } from "next-auth/react"
+import AdminList from "@/components/adminList";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 async function GetUsers() {
-  
-    const res = await fetch('http:localhost:3000/api/admin',{
+    const api=process.env.API_URL
+    //const  session =await getServerSession(authOptions);
+    const res = await fetch(`${api}/api/admin`,{
         method: 'GET',
         cache: "no-store",
         headers: {
@@ -19,13 +24,16 @@ async function GetUsers() {
       // This will activate the closest `error.js` Error Boundary
       throw new Error('Failed to fetch data')
     }
-   
+   //Admin(session)
+   //console.log("session",session);
     return data.users
    
   
   }
 
 export default async function Admin(){
+   
+    const  session =await getServerSession(authOptions);
     const data = await GetUsers()
     return(
         <div className="antialiased font-sans bg-gray-200">
@@ -37,12 +45,7 @@ export default async function Admin(){
             <div className="my-2 flex sm:flex-row flex-col">
                 <div className="flex flex-row mb-1 sm:mb-0">
                     <div className="relative">
-                        <select
-                            className="appearance-none h-full rounded-l border block  w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>20</option>
-                        </select>
+                      
                         <div
                             className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -51,12 +54,7 @@ export default async function Admin(){
                         </div>
                     </div>
                     <div className="relative">
-                        <select
-                            className="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-                            <option>All</option>
-                            <option>Active</option>
-                            <option>Inactive</option>
-                        </select>
+                      
                         <div
                             className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -79,6 +77,7 @@ export default async function Admin(){
             </div>
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div className="inline-block min-w-full shadow rounded-lg overflow-hidden w-96">
+                  
                     <table className="min-w-full leading-normal w-96">
                         <thead>
                             <tr className="ml-4">
@@ -105,7 +104,7 @@ export default async function Admin(){
                             <tr key={user._id} >
                             
                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <Link href={`/editAdmin/${user._id}`}>
+                                <Link   href={session?.user?.role == "admin"  ?`/editAdmin/${user._id}`:"#"}>
                                     <div className="flex items-center">
                                         <div className="flex-shrink-0 w-10 h-10">
                 
@@ -120,19 +119,19 @@ export default async function Admin(){
                                     </Link>
                                 </td>
                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <Link href="#">
+                                <Link href={session?.user?.role == "admin"  ?`/editAdmin/${user._id}`:"#"}>
                                     <p className="text-gray-900 whitespace-no-wrap">{user.role}</p>
                                </Link>
                                 </td>
                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <Link href="#">
+                                <Link href={session?.user?.role == "admin"  ?`/editAdmin/${user._id}`:"#"}>
                                     <p className="text-gray-900 whitespace-no-wrap">
                                     {user.createdAt.slice(0, -24 + 10)}
                                     </p>
                                     </Link>
                                 </td>
                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm ml-4">
-                                <Link href="#">
+                                <Link href={session?.user?.role == "admin"  ?`/editAdmin/${user._id}`:"#"}>
                                     <span
                                         className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden

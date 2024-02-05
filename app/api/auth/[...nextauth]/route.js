@@ -29,6 +29,7 @@ export const authOptions = {
             // Any object returned will be saved in `user` property of the JWT
             // console.log("utilisateur", user);
             if (user.statu == "online") {
+              //console.log("user@:", user);
               return user;
             } else {
               return Promise.resolve(null, {
@@ -41,9 +42,26 @@ export const authOptions = {
       },
     }),
   ],
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.role = user.role;
+        token.id = user._id;
+        token.name = user.name;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      session.user.role = token.role;
+      session.user.id = token.id;
+      session.name = token.name;
+      return session;
+    },
+  },
   session: {
     strategy: "jwt",
   },
+
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/",

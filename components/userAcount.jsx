@@ -2,8 +2,8 @@ import EditAdminForm from "./editAdminForm";
 
 
 export async function getData(id) {
-  
-    const apiUrl = `http://localhost:3000/api/admin/${id}`;
+   const api=process.env.API_URL
+    const apiUrl = `${api}/api/admin/${id}`;
     //console.log('API URL:', apiUrl);
 
     const response = await fetch(apiUrl, { cache:'no-store' });

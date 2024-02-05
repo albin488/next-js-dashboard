@@ -2,8 +2,8 @@ import RemoveBtn from "./RemoveBtn";
 import EditUserForm from "./EditUserForm";
 
 export async function getData(id) {
-  
-      const apiUrl = `http://localhost:3000/api/users/${id}`;
+  const api=process.env.API_URL
+      const apiUrl = `${api}/api/users/${id}`;
       console.log('API URL:', apiUrl);
   
       const response = await fetch(apiUrl, { cache:'no-store' });
